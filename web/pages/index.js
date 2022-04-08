@@ -12,6 +12,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [isOwner, setIsOwner] = useState(false)
   const [tokenIdsMinted, setTokenIdsminted] = useState(0)
+  const [success, setSuccess] = useState(false)
 
   const web3ModalRef = useRef()
 
@@ -142,6 +143,7 @@ export default function Home() {
 
   const publicMint = async() => {
     try {
+      setSuccess(false)
       const signer = await getProviderOrSigner(true)
 
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, signer)
@@ -154,7 +156,7 @@ export default function Home() {
       await tx.wait()
       setLoading(false)
 
-      window.alert('You successfully minted a Crypto Dev')
+      setSuccess(true)
     }
     catch(error) {
       console.error(error)
@@ -163,6 +165,7 @@ export default function Home() {
 
   const presaleMint = async() => {
     try {
+      setSuccess(false)
       const signer = await getProviderOrSigner(true)
 
       const nftContract = new Contract(NFT_CONTRACT_ADDRESS, abi, signer)
@@ -175,8 +178,8 @@ export default function Home() {
   
       await tx.wait()
       setLoading(false)
-  
-      window.alert('You successfully minted a Crypto Dev!')
+      
+      setSuccess(true)
     }
     catch(error) {
       console.error(error)
@@ -287,6 +290,11 @@ export default function Home() {
             {tokenIdsMinted}/20 have been minted
           </div>
           {renderButton()}
+          {success && (
+            <div className={styles.description}>
+            You successfully minted a Crypto Dev 🥳🥳, view your nft <a href="https://testnets.opensea.io/assets/0xfa60ff5c5c0f7b67bd8c5fff68c4cd8c4ba8dfbb/1">here on opensea</a>
+          </div>
+          )}
         </div>
         <div>
           <img className={styles.image} src="./cryptodevs/0.svg" />
