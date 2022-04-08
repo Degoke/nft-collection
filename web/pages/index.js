@@ -261,7 +261,6 @@ export default function Home() {
       );
     }
 
-    // If presale started and has ended, its time for public minting
     if (presaleStarted && presaleEnded) {
       return (
         <button className={styles.button} onClick={publicMint}>
