@@ -22,9 +22,9 @@ export default function Home() {
 
     const { chainId }= await web3Provider.getNetwork()
 
-    if(chainId !== 4) {
-      window.alert('Change the network to Rinkeby')
-      throw new Error('Change network to rinkeby')
+    if(chainId !== 45 {
+      window.alert('Change the network to goerli')
+      throw new Error('Change network to goerli')
     }
 
     if(needSigner) {
@@ -189,7 +189,7 @@ export default function Home() {
   useEffect(() => {
     if(!walletConnected) {
       web3ModalRef.current = new Web3Modal({
-        network: 'rinkeby',
+        network: 'goerli',
         providerOptions: {},
         disableInjectedProvider: false
       })
